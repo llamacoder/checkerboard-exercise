@@ -20,7 +20,11 @@ function makeRow(firstColor, secondColor) {
   let myContainerDiv = document.createElement("div");
 
   for (let i = 0; i < 8; i++) {
-     myContainerDiv.appendChild(makeDiv(firstColor));
+    let myDiv = makeDiv(firstColor);
+    if (i === 0) {
+      myDiv.style.clear = "left";
+    }
+     myContainerDiv.appendChild(myDiv);
      [firstColor, secondColor] = [secondColor, firstColor];
   }
   return myContainerDiv;
@@ -31,9 +35,12 @@ function makeGrid() {
   let firstColor = "#ff0000";
   let secondColor = "#000000";
 
-  let rowDiv = makeRow(firstColor, secondColor);
   let myBody = document.querySelector("body");
-  myBody.appendChild(rowDiv);
+
+  for (let i = 0; i < 8; i++) {
+    myBody.appendChild(makeRow(firstColor, secondColor));
+    [firstColor, secondColor] = [secondColor, firstColor];
+  }
 }
 
 makeGrid();
