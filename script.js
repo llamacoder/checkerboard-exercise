@@ -14,22 +14,26 @@ function makeDiv(inColor) {
 }
 
 //  make a row
-function makeRow() {
-  //  get the body
-  let myBody = document.querySelector("body");
+function makeRow(firstColor, secondColor) {
 
   //  make a div container to hold a row
   let myContainerDiv = document.createElement("div");
 
-  let elem1 = makeDiv("#ff0000");
-  let elem2 = makeDiv("#000000");
-  myBody.appendChild(elem1);
-  myBody.appendChild(elem2);
+  for (let i = 0; i < 8; i++) {
+     myContainerDiv.appendChild(makeDiv(firstColor));
+     [firstColor, secondColor] = [secondColor, firstColor];
+  }
+  return myContainerDiv;
 }
 
 //  make the grid
 function makeGrid() {
-  makeRow();
+  let firstColor = "#ff0000";
+  let secondColor = "#000000";
+
+  let rowDiv = makeRow(firstColor, secondColor);
+  let myBody = document.querySelector("body");
+  myBody.appendChild(rowDiv);
 }
 
 makeGrid();
