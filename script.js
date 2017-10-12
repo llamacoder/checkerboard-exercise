@@ -66,6 +66,15 @@ document.addEventListener("DOMContentLoaded", function() {
   function makeGridOfRandomColors() {
     let myBody = document.querySelector("body");
 
+    // add some music!
+    let myAudio = document.createElement('audio');
+    myAudio.autoplay = true;
+    myAudio.loop = true;
+    myAudio.src = "./audio/02.mp3"
+    myAudio.controls = true;
+    myBody.appendChild(myAudio);
+
+
     for (let i = 0; i < 8; i++) {
       myBody.appendChild(makeRowOfRandomColors());
     }
