@@ -64,6 +64,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
   function makeGridOfGradientColors() {
     let myBody = document.querySelector("body");
+
+    // add some music!
+    let myAudio = document.createElement('audio');
+    myAudio.autoplay = true;
+    myAudio.loop = true;
+    myAudio.src = "./audio/01.mp3"
+    myAudio.controls = true;
+    myBody.appendChild(myAudio);
+
+
     let firstColorRed = 50;
     let firstColorGreen = 197;
     let firstColorBlue = 274;
