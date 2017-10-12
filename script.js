@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   //  make a row that alternates colors
-  function makeRow(firstColor, secondColor) {
+  function makeRowOfAlternatingColors(firstColor, secondColor) {
 
     //  make a div container to hold a row
     let myContainerDiv = document.createElement("div");
@@ -38,7 +38,6 @@ document.addEventListener("DOMContentLoaded", function() {
     return myContainerDiv;
   }
 
-  //  make a row that alternates colors
   function makeRowOfRandomColors() {
 
     //  make a div container to hold a row
@@ -58,8 +57,34 @@ document.addEventListener("DOMContentLoaded", function() {
     let myBody = document.querySelector("body");
 
     for (let i = 0; i < 8; i++) {
-      myBody.appendChild(makeRow(firstColor, secondColor));
+      myBody.appendChild(makeRowOfAlternatingColors(firstColor, secondColor));
       [firstColor, secondColor] = [secondColor, firstColor];
+    }
+  }
+
+  function makeGridOfGradientColors() {
+    let myBody = document.querySelector("body");
+    let firstColorRed = 50;
+    let firstColorGreen = 197;
+    let firstColorBlue = 274;
+    let secondColorRed = 194;
+    let secondColorGreen = 18;
+    let secondColorBlue = 274;
+
+    for (let i = 0; i < 8; i++) {
+      firstColorRed += 10;
+      firstColorGreen -= 22;
+      firstColor = "rgb(" + firstColorRed + "," + firstColorGreen + "," +
+                            firstColorBlue + ")";
+      secondColorGreen -= 22;
+      secondColorBlue += 1;
+      secondColor = "rgb(" + secondColorRed + "," + secondColorGreen + "," +
+                            secondColorBlue + ")";
+      if (i%2 === 0) {
+        myBody.appendChild(makeRowOfAlternatingColors(firstColor, secondColor));
+      } else {
+        myBody.appendChild(makeRowOfAlternatingColors(secondColor, firstColor));
+      }
     }
   }
 
@@ -70,8 +95,19 @@ document.addEventListener("DOMContentLoaded", function() {
       myBody.appendChild(makeRowOfRandomColors());
     }
   }
+  // color: rgb(0,0,255);
+  //
+  // #grad {
+  //     background: red; /* For browsers that do not support gradients */
+  //     background: -webkit-linear-gradient(red, yellow); /* For Safari 5.1 to 6.0 */
+  //     background: -o-linear-gradient(red, yellow); /* For Opera 11.1 to 12.0 */
+  //     background: -moz-linear-gradient(red, yellow); /* For Firefox 3.6 to 15 */
+  //     background: linear-gradient(red, yellow); /* Standard syntax */
+  // }
+
 
   // makeGridOfAlternatingColors("#ff0000", "#000000");
-  makeGridOfRandomColors();
+  // makeGridOfRandomColors();
+  makeGridOfGradientColors("rgb(50, 219, 255)", "rgb(216, 18, 273)");
 
 });
