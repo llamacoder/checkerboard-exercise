@@ -87,6 +87,14 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     }
   }
+  function changeColors() {
+    let divs = document.querySelectorAll("div");
+    let divArray = Array.from(divs);
+
+    return divArray.map(function(element) {
+      element.style.backgroundColor = getRandomColor();
+    });
+  }
 
   function makeGridOfRandomColors() {
     let myBody = document.querySelector("body");
@@ -95,19 +103,16 @@ document.addEventListener("DOMContentLoaded", function() {
       myBody.appendChild(makeRowOfRandomColors());
     }
   }
-  // color: rgb(0,0,255);
-  //
-  // #grad {
-  //     background: red; /* For browsers that do not support gradients */
-  //     background: -webkit-linear-gradient(red, yellow); /* For Safari 5.1 to 6.0 */
-  //     background: -o-linear-gradient(red, yellow); /* For Opera 11.1 to 12.0 */
-  //     background: -moz-linear-gradient(red, yellow); /* For Firefox 3.6 to 15 */
-  //     background: linear-gradient(red, yellow); /* Standard syntax */
-  // }
 
+  function intervalFunction() {
+    setInterval(function(){
+      changeColors();
+    }, 2000);
+  }
 
   // makeGridOfAlternatingColors("#ff0000", "#000000");
   // makeGridOfRandomColors();
   makeGridOfGradientColors("rgb(50, 219, 255)", "rgb(216, 18, 273)");
+  intervalFunction();
 
 });
